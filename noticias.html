@@ -7,7 +7,6 @@
     <meta name="description" content="Fique por dentro das últimas notícias da sua cidade e região">
     <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌱</text></svg>">
     <style>
-        /* MANTER O MESMO CSS DO INDEX.HTML */
         :root {
             --primary: #2c5530;
             --secondary: #4a7c59;
@@ -30,14 +29,19 @@
             line-height: 1.6;
         }
         
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
         .container {
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 15px;
         }
-
-        /* HEADER - MESMO ESTILO DO INDEX */
+        
+        /* Header */
         header {
             background-color: var(--primary);
             color: white;
@@ -87,8 +91,8 @@
             border-radius: 0 4px 4px 0;
             cursor: pointer;
         }
-
-        /* NAVEGAÇÃO - MESMO ESTILO */
+        
+        /* Menu Desktop */
         .desktop-nav ul {
             display: flex;
             list-style: none;
@@ -101,47 +105,123 @@
             transition: background 0.3s;
         }
         
-        .desktop-nav a:hover {
+        .desktop-nav a:hover, .desktop-nav a.active {
             background: rgba(255,255,255,0.1);
         }
-
-        /* HERO ESPECÍFICO PARA NOTÍCIAS */
+        
+        /* Menu Mobile */
+        .mobile-nav {
+            display: none;
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            transition: 0.3s;
+        }
+        
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: var(--primary);
+            padding: 15px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        }
+        
+        .mobile-menu.active {
+            display: block;
+        }
+        
+        .mobile-menu ul {
+            list-style: none;
+        }
+        
+        .mobile-menu li {
+            margin-bottom: 10px;
+        }
+        
+        .mobile-menu a {
+            display: block;
+            padding: 10px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        
+        .mobile-menu a:hover, .mobile-menu a.active {
+            background: rgba(255,255,255,0.1);
+        }
+        
+        /* Hero Section */
         .news-hero {
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1585829365295-ab7cd400c63e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
             color: white;
-            padding: 80px 0;
+            padding: 100px 0;
             text-align: center;
             margin-bottom: 40px;
         }
         
         .news-hero h1 {
             font-size: 2.5rem;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
-
-        /* FILTROS DE CATEGORIA */
+        
+        .news-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--dark);
+            padding: 12px 25px;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* Filtros */
         .category-filters {
             display: flex;
             gap: 15px;
             margin-bottom: 30px;
             flex-wrap: wrap;
+            justify-content: center;
         }
         
         .filter-btn {
-            padding: 8px 20px;
+            padding: 10px 20px;
             background: white;
             border: 2px solid var(--primary);
             border-radius: 25px;
             cursor: pointer;
             transition: all 0.3s;
+            font-weight: 500;
         }
         
         .filter-btn.active, .filter-btn:hover {
             background: var(--primary);
             color: white;
         }
-
-        /* GRID DE NOTÍCIAS */
+        
+        /* Grid de Notícias */
         .news-archive {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -185,6 +265,7 @@
         .news-archive-content h3 {
             margin-bottom: 10px;
             font-size: 1.1rem;
+            line-height: 1.4;
         }
         
         .news-archive-meta {
@@ -192,8 +273,13 @@
             font-size: 0.9rem;
             margin-bottom: 10px;
         }
-
-        /* PAGINAÇÃO */
+        
+        .news-archive-content p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+        
+        /* Paginação */
         .pagination {
             display: flex;
             justify-content: center;
@@ -202,7 +288,7 @@
         }
         
         .page-btn {
-            padding: 8px 15px;
+            padding: 10px 15px;
             border: 1px solid #ddd;
             background: white;
             border-radius: 4px;
@@ -215,18 +301,118 @@
             color: white;
             border-color: var(--primary);
         }
-
-        /* FOOTER - MESMO ESTILO */
+        
+        /* AdSense */
+        .ad-container {
+            background: #f0f0f0;
+            border: 1px dashed #ccc;
+            margin: 30px 0;
+            padding: 20px;
+            text-align: center;
+            border-radius: 4px;
+        }
+        
+        /* Footer */
         footer {
             background: var(--dark);
             color: white;
             padding: 40px 0 20px;
         }
-
-        /* RESPONSIVIDADE */
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 36px;
+            height: 36px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 36px;
+            transition: background 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--accent);
+            color: var(--dark);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 992px) {
+            .news-archive {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
         @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .search-bar {
+                max-width: 100%;
+            }
+            
+            .desktop-nav {
+                display: none;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
             .news-archive {
                 grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .news-hero {
+                padding: 60px 0;
             }
             
             .news-hero h1 {
@@ -247,17 +433,39 @@
                     <input type="text" placeholder="Buscar notícias...">
                     <button>🔍</button>
                 </div>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
+            
+            <!-- Menu Desktop -->
             <nav class="desktop-nav">
                 <ul>
                     <li><a href="index.html">Início</a></li>
-                    <li><a href="noticias.html" style="background: rgba(255,255,255,0.1);">Notícias Locais</a></li>
+                    <li><a href="noticias.html" class="active">Notícias Locais</a></li>
                     <li><a href="receitas.html">Receitas</a></li>
                     <li><a href="bem-estar.html">Bem-estar</a></li>
                     <li><a href="economia.html">Economia Doméstica</a></li>
                     <li><a href="sobre.html">Sobre</a></li>
                     <li><a href="contato.html">Contato</a></li>
                 </ul>
+            </nav>
+            
+            <!-- Menu Mobile -->
+            <nav class="mobile-nav">
+                <div class="mobile-menu" id="mobileMenu">
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="noticias.html" class="active">Notícias Locais</a></li>
+                        <li><a href="receitas.html">Receitas</a></li>
+                        <li><a href="bem-estar.html">Bem-estar</a></li>
+                        <li><a href="economia.html">Economia Doméstica</a></li>
+                        <li><a href="sobre.html">Sobre</a></li>
+                        <li><a href="contato.html">Contato</a></li>
+                    </ul>
+                </div>
             </nav>
         </div>
     </header>
@@ -285,67 +493,67 @@
         <div class="news-archive">
             <!-- Notícia 1 -->
             <article class="news-archive-card">
-                <img src="https://images.unsplash.com/photo-1587332219051-d54d6f7c8b04?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Prefeitura">
+                <img src="https://images.unsplash.com/photo-1587332219051-d54d6f7c8b04?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Prefeitura">
                 <div class="news-archive-content">
                     <span class="news-category">Política</span>
                     <h3>Prefeitura Anuncia Novo Programa de Incentivo a Pequenos Negócios</h3>
                     <div class="news-archive-meta">Por João Silva • 2 horas atrás</div>
-                    <p>Iniciativa visa fomentar o empreendedorismo local com condições especiais de crédito...</p>
+                    <p>Iniciativa visa fomentar o empreendedorismo local com condições especiais de crédito e assessoria gratuita para microempresários.</p>
                 </div>
             </article>
 
             <!-- Notícia 2 -->
             <article class="news-archive-card">
-                <img src="https://images.unsplash.com/photo-1554679665-f5537f187268?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Festival">
+                <img src="https://images.unsplash.com/photo-1554679665-f5537f187268?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Festival">
                 <div class="news-archive-content">
                     <span class="news-category">Eventos</span>
                     <h3>Festival Gastronômico Reúne Chefs Renomados no Centro da Cidade</h3>
                     <div class="news-archive-meta">Por Maria Santos • 5 horas atrás</div>
-                    <p>Evento acontecerá no próximo fim de semana com entrada gratuita e diversas opções...</p>
+                    <p>Evento acontecerá no próximo fim de semana com entrada gratuita e diversas opções culinárias de todas as regiões do país.</p>
                 </div>
             </article>
 
             <!-- Notícia 3 -->
             <article class="news-archive-card">
-                <img src="https://images.unsplash.com/photo-1587332278431-202f5c1c8b59?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Feira">
+                <img src="https://images.unsplash.com/photo-1587332278431-202f5c1c8b59?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Feira">
                 <div class="news-archive-content">
                     <span class="news-category">Economia</span>
                     <h3>Feira Orgânica do Bairro Expande e Oferece Novos Produtos</h3>
                     <div class="news-archive-meta">Por Carlos Oliveira • 1 dia atrás</div>
-                    <p>Agricultores familiares agora oferecem além de hortaliças, laticínios e artesanato...</p>
+                    <p>Agricultores familiares agora oferecem além de hortaliças, laticínios, pães artesanais e produtos de higiene naturais.</p>
                 </div>
             </article>
 
             <!-- Notícia 4 -->
             <article class="news-archive-card">
-                <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Saúde">
+                <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Saúde">
                 <div class="news-archive-content">
                     <span class="news-category">Saúde</span>
                     <h3>Postos de Saúde Terão Horário Estendido Durante o Inverno</h3>
                     <div class="news-archive-meta">Por Ana Costa • 1 dia atrás</div>
-                    <p>Medida busca prevenir doenças respiratórias e atender população que trabalha durante o dia...</p>
+                    <p>Medida busca prevenir doenças respiratórias e atender população que trabalha durante o dia, funcionando até as 20h.</p>
                 </div>
             </article>
 
             <!-- Notícia 5 -->
             <article class="news-archive-card">
-                <img src="https://images.unsplash.com/photo-1571624436279-b272aff752b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Parque">
+                <img src="https://images.unsplash.com/photo-1571624436279-b272aff752b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Parque">
                 <div class="news-archive-content">
                     <span class="news-category">Urbanismo</span>
                     <h3>Novo Parque Será Inaugurado no Próximo Mês no Bairro Central</h3>
                     <div class="news-archive-meta">Por Roberto Alves • 2 dias atrás</div>
-                    <p>Área de 5.000m² contará com quadras esportivas, playground e área de convivência...</p>
+                    <p>Área de 5.000m² contará com quadras esportivas, playground e área de convivência para famílias.</p>
                 </div>
             </article>
 
             <!-- Notícia 6 -->
             <article class="news-archive-card">
-                <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Educação">
+                <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Educação">
                 <div class="news-archive-content">
                     <span class="news-category">Educação</span>
                     <h3>Escolas Municipais Receberão Tablets para Aulas de Tecnologia</h3>
                     <div class="news-archive-meta">Por Patrícia Lima • 3 dias atrás</div>
-                    <p>Projeto piloto beneficiará 2.000 alunos do ensino fundamental com equipamentos novos...</p>
+                    <p>Projeto piloto beneficiará 2.000 alunos do ensino fundamental com equipamentos novos para aulas de programação.</p>
                 </div>
             </article>
         </div>
@@ -359,7 +567,7 @@
         </div>
 
         <!-- Espaço AdSense -->
-        <div class="ad-container" style="background: #f0f0f0; border: 1px dashed #ccc; padding: 30px; text-align: center; margin: 40px 0; border-radius: 8px;">
+        <div class="ad-container">
             [ESPAÇO PARA ANÚNCIO ADSENSE - LARGO]
         </div>
     </div>
@@ -410,13 +618,26 @@
             </div>
             <div class="copyright">
                 &copy; 2023 Vida em Equilíbrio. Todos os direitos reservados. | 
-                <a href="#">Política de Privacidade</a> | 
-                <a href="#">Termos de Uso</a>
+                <a href="politica-privacidade.html">Política de Privacidade</a> | 
+                <a href="termos-uso.html">Termos de Uso</a>
             </div>
         </div>
     </footer>
 
     <script>
+        // Menu Hamburger para Mobile
+        document.getElementById('hamburger').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
+        });
+        
+        // Fechar menu ao clicar em um link (para mobile)
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobileMenu').classList.remove('active');
+            });
+        });
+
         // Filtros de categoria
         document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.addEventListener('click', function() {

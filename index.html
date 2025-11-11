@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vida em Equilíbrio | Notícias, Receitas e Bem-estar</title>
     <meta name="description" content="Portal com notícias locais, receitas práticas, dicas de bem-estar e economia doméstica para seu dia a dia">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌱</text></svg>">
+    
     <style>
         /* Reset e variáveis */
         :root {
@@ -47,6 +51,9 @@
             color: white;
             padding: 15px 0;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
         
         .header-top {
@@ -59,6 +66,9 @@
         .logo {
             font-size: 1.8rem;
             font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         
         .logo span {
@@ -86,27 +96,81 @@
             cursor: pointer;
         }
         
-        nav ul {
+        /* Menu Desktop */
+        .desktop-nav ul {
             display: flex;
             list-style: none;
             gap: 20px;
         }
         
-        nav a {
+        .desktop-nav a {
             padding: 5px 10px;
             border-radius: 4px;
             transition: background 0.3s;
         }
         
-        nav a:hover {
+        .desktop-nav a:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        
+        /* Menu Mobile */
+        .mobile-nav {
+            display: none;
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            transition: 0.3s;
+        }
+        
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: var(--primary);
+            padding: 15px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        }
+        
+        .mobile-menu.active {
+            display: block;
+        }
+        
+        .mobile-menu ul {
+            list-style: none;
+        }
+        
+        .mobile-menu li {
+            margin-bottom: 10px;
+        }
+        
+        .mobile-menu a {
+            display: block;
+            padding: 10px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        
+        .mobile-menu a:hover {
             background: rgba(255,255,255,0.1);
         }
         
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://source.unsplash.com/random/1200x600/?food') no-repeat center center/cover;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
             color: white;
-            padding: 80px 0;
+            padding: 100px 0;
             text-align: center;
             margin-bottom: 30px;
         }
@@ -407,9 +471,12 @@
                 max-width: 100%;
             }
             
-            nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
+            .desktop-nav {
+                display: none;
+            }
+            
+            .hamburger {
+                display: flex;
             }
             
             .news-grid {
@@ -423,6 +490,14 @@
             .footer-content {
                 grid-template-columns: 1fr;
             }
+            
+            .hero {
+                padding: 60px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
@@ -431,13 +506,22 @@
     <header>
         <div class="container">
             <div class="header-top">
-                <div class="logo">Vida em <span>Equilíbrio</span></div>
+                <div class="logo">
+                    <span>🌱</span> Vida em <span>Equilíbrio</span>
+                </div>
                 <div class="search-bar">
                     <input type="text" placeholder="Buscar notícias, receitas...">
                     <button>🔍</button>
                 </div>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
-            <nav>
+            
+            <!-- Menu Desktop -->
+            <nav class="desktop-nav">
                 <ul>
                     <li><a href="#">Início</a></li>
                     <li><a href="#">Notícias Locais</a></li>
@@ -447,6 +531,21 @@
                     <li><a href="#">Sobre</a></li>
                     <li><a href="#">Contato</a></li>
                 </ul>
+            </nav>
+            
+            <!-- Menu Mobile -->
+            <nav class="mobile-nav">
+                <div class="mobile-menu" id="mobileMenu">
+                    <ul>
+                        <li><a href="#">Início</a></li>
+                        <li><a href="#">Notícias Locais</a></li>
+                        <li><a href="#">Receitas</a></li>
+                        <li><a href="#">Bem-estar</a></li>
+                        <li><a href="#">Economia Doméstica</a></li>
+                        <li><a href="#">Sobre</a></li>
+                        <li><a href="#">Contato</a></li>
+                    </ul>
+                </div>
             </nav>
         </div>
     </header>
@@ -468,35 +567,35 @@
                 <h2 class="section-title">Últimas Notícias</h2>
                 <div class="news-grid">
                     <article class="news-card">
-                        <img src="https://source.unsplash.com/random/600x400/?city" alt="Notícia local">
+                        <img src="https://images.unsplash.com/photo-1587332219051-d54d6f7c8b04?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Notícia local">
                         <div class="news-card-content">
                             <h3>Prefeitura anuncia novo programa de incentivo a pequenos negócios</h3>
                             <div class="news-meta">Por João Silva • 2 horas atrás</div>
-                            <p>Iniciativa visa fomentar o empreendedorismo local com condições especiais de crédito...</p>
+                            <p>Iniciativa visa fomentar o empreendedorismo local com condições especiais de crédito e assessoria gratuita para microempresários.</p>
                         </div>
                     </article>
                     <article class="news-card">
-                        <img src="https://source.unsplash.com/random/600x400/?event" alt="Evento local">
+                        <img src="https://images.unsplash.com/photo-1554679665-f5537f187268?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Evento local">
                         <div class="news-card-content">
                             <h3>Festival gastronômico reúne chefs renomados no centro da cidade</h3>
                             <div class="news-meta">Por Maria Santos • 5 horas atrás</div>
-                            <p>Evento acontecerá no próximo fim de semana com entrada gratuita e diversas opções...</p>
+                            <p>Evento acontecerá no próximo fim de semana com entrada gratuita e diversas opções culinárias de todas as regiões do país.</p>
                         </div>
                     </article>
                     <article class="news-card">
-                        <img src="https://source.unsplash.com/random/600x400/?market" alt="Economia">
+                        <img src="https://images.unsplash.com/photo-1587332278431-202f5c1c8b59?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Economia">
                         <div class="news-card-content">
                             <h3>Feira orgânica do bairro expande e oferece novos produtos</h3>
                             <div class="news-meta">Por Carlos Oliveira • 1 dia atrás</div>
-                            <p>Agricultores familiares agora oferecem além de hortaliças, laticínios e artesanato...</p>
+                            <p>Agricultores familiares agora oferecem além de hortaliças, laticínios, pães artesanais e produtos de higiene naturais.</p>
                         </div>
                     </article>
                     <article class="news-card">
-                        <img src="https://source.unsplash.com/random/600x400/?health" alt="Saúde">
+                        <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Saúde">
                         <div class="news-card-content">
                             <h3>Postos de saúde terão horário estendido durante o inverno</h3>
                             <div class="news-meta">Por Ana Costa • 1 dia atrás</div>
-                            <p>Medida busca prevenir doenças respiratórias e atender população que trabalha durante o dia...</p>
+                            <p>Medida busca prevenir doenças respiratórias e atender população que trabalha durante o dia, funcionando até as 20h.</p>
                         </div>
                     </article>
                 </div>
@@ -510,36 +609,36 @@
                     <h2 class="section-title">Receitas em Destaque</h2>
                     <div class="recipes-grid">
                         <article class="recipe-card">
-                            <img src="https://source.unsplash.com/random/600x400/?pasta" alt="Receita">
+                            <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Receita">
                             <div class="recipe-card-content">
                                 <h3>Macarrão ao Molho Pesto em 15 Minutos</h3>
                                 <div class="recipe-meta">
                                     <span>⏱ 15 min</span>
                                     <span>💰 Econômica</span>
                                 </div>
-                                <p>Receita prática e saborosa para os dias corridos...</p>
+                                <p>Receita prática e saborosa para os dias corridos, usando ingredientes frescos e de baixo custo.</p>
                             </div>
                         </article>
                         <article class="recipe-card">
-                            <img src="https://source.unsplash.com/random/600x400/?salad" alt="Receita">
+                            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Receita">
                             <div class="recipe-card-content">
                                 <h3>Salada Completa com Frango Grelhado</h3>
                                 <div class="recipe-meta">
                                     <span>⏱ 20 min</span>
                                     <span>🥗 Saudável</span>
                                 </div>
-                                <p>Refeição nutritiva e balanceada para o almoço...</p>
+                                <p>Refeição nutritiva e balanceada para o almoço, com proteína magra e vegetais frescos da estação.</p>
                             </div>
                         </article>
                         <article class="recipe-card">
-                            <img src="https://source.unsplash.com/random/600x400/?dessert" alt="Receita">
+                            <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Receita">
                             <div class="recipe-card-content">
                                 <h3>Bolo de Caneca de Micro-ondas</h3>
                                 <div class="recipe-meta">
                                     <span>⏱ 5 min</span>
                                     <span>🍰 Sobremesa</span>
                                 </div>
-                                <p>Satisfaça sua vontade de doce em poucos minutos...</p>
+                                <p>Satisfaça sua vontade de doce em poucos minutos com esta receita prática que rende uma porção individual.</p>
                             </div>
                         </article>
                     </div>
@@ -551,21 +650,21 @@
                 <div class="popular-posts">
                     <h3 class="section-title">Mais Lidas</h3>
                     <div class="popular-post">
-                        <img src="https://source.unsplash.com/random/300x200/?news" alt="Post popular">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="Post popular">
                         <div>
                             <h4>Como economizar até 30% na conta de luz</h4>
                             <div class="news-meta">1.2K visualizações</div>
                         </div>
                     </div>
                     <div class="popular-post">
-                        <img src="https://source.unsplash.com/random/300x200/?recipe" alt="Post popular">
+                        <img src="https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="Post popular">
                         <div>
                             <h4>5 receitas com sobras de alimentos</h4>
                             <div class="news-meta">980 visualizações</div>
                         </div>
                     </div>
                     <div class="popular-post">
-                        <img src="https://source.unsplash.com/random/300x200/?local" alt="Post popular">
+                        <img src="https://images.unsplash.com/photo-1571624436279-b272aff752b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="Post popular">
                         <div>
                             <h4>Novo parque será inaugurado no próximo mês</h4>
                             <div class="news-meta">850 visualizações</div>
@@ -659,5 +758,24 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // Menu Hamburger para Mobile
+        document.getElementById('hamburger').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
+            
+            // Animação do hamburger
+            this.classList.toggle('active');
+        });
+        
+        // Fechar menu ao clicar em um link (para mobile)
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobileMenu').classList.remove('active');
+                document.getElementById('hamburger').classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>

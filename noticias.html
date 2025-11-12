@@ -162,24 +162,52 @@
             background: rgba(255,255,255,0.1);
         }
         
-        /* Hero Section */
+        /* Hero Section Melhorada */
         .news-hero {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1585829365295-ab7cd400c63e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            background: linear-gradient(135deg, rgba(44, 85, 48, 0.9) 0%, rgba(74, 124, 89, 0.8) 100%), 
+                        url('https://images.unsplash.com/photo-1585829365295-ab7cd400c63e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
             color: white;
-            padding: 100px 0;
+            padding: 120px 0;
             text-align: center;
             margin-bottom: 40px;
+            position: relative;
         }
         
-        .news-hero h1 {
-            font-size: 2.5rem;
+        .hero-content h1 {
+            font-size: 3rem;
             margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
         
-        .news-hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto;
+        .hero-content p {
+            font-size: 1.3rem;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 40px;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--accent);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
         }
         
         .btn {
@@ -383,6 +411,10 @@
             .footer-content {
                 grid-template-columns: repeat(2, 1fr);
             }
+            
+            .hero-stats {
+                gap: 30px;
+            }
         }
         
         @media (max-width: 768px) {
@@ -412,10 +444,19 @@
             }
             
             .news-hero {
-                padding: 60px 0;
+                padding: 80px 0;
             }
             
-            .news-hero h1 {
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .stat-number {
                 font-size: 2rem;
             }
         }
@@ -470,7 +511,7 @@
         </div>
     </header>
 
-        <!-- Hero Section com Banner -->
+    <!-- Hero Section com Banner -->
     <section class="news-hero">
         <div class="container">
             <div class="hero-content">
@@ -493,6 +534,7 @@
             </div>
         </div>
     </section>
+
     <div class="container">
         <!-- Filtros por Categoria -->
         <div class="category-filters">
@@ -508,7 +550,7 @@
         <div class="news-archive">
             <!-- Notícia 1 -->
             <article class="news-archive-card">
-                <img src="https://images.unsplash.com/photo-1587332219051-d54d6f7c8b04?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Prefeitura">
+                <img src="https://images.unsplash.com/photo-1587332219051-d54d6f7c8b04?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Prefeitura">
                 <div class="news-archive-content">
                     <span class="news-category">Política</span>
                     <h3>Prefeitura Anuncia Novo Programa de Incentivo a Pequenos Negócios</h3>
@@ -519,7 +561,7 @@
 
             <!-- Notícia 2 -->
             <article class="news-archive-card">
-                <img src="https://images.unsplash.com/photo-1554679665-f5537f187268?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Festival">
+                <img src="https://images.unsplash.com/photo-1554679665-f5537f187268?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Festival">
                 <div class="news-archive-content">
                     <span class="news-category">Eventos</span>
                     <h3>Festival Gastronômico Reúne Chefs Renomados no Centro da Cidade</h3>
@@ -530,7 +572,7 @@
 
             <!-- Notícia 3 -->
             <article class="news-archive-card">
-                <img src="https://images.unsplash.com/photo-1587332278431-202f5c1c8b59?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Feira">
+                <img src="https://images.unsplash.com/photo-1587332278431-202f5c1c8b59?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Feira">
                 <div class="news-archive-content">
                     <span class="news-category">Economia</span>
                     <h3>Feira Orgânica do Bairro Expande e Oferece Novos Produtos</h3>
@@ -541,7 +583,7 @@
 
             <!-- Notícia 4 -->
             <article class="news-archive-card">
-                <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Saúde">
+                <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Saúde">
                 <div class="news-archive-content">
                     <span class="news-category">Saúde</span>
                     <h3>Postos de Saúde Terão Horário Estendido Durante o Inverno</h3>
@@ -552,7 +594,7 @@
 
             <!-- Notícia 5 -->
             <article class="news-archive-card">
-                <img src="https://images.unsplash.com/photo-1571624436279-b272aff752b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Parque">
+                <img src="https://images.unsplash.com/photo-1571624436279-b272aff752b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Parque">
                 <div class="news-archive-content">
                     <span class="news-category">Urbanismo</span>
                     <h3>Novo Parque Será Inaugurado no Próximo Mês no Bairro Central</h3>
@@ -563,7 +605,7 @@
 
             <!-- Notícia 6 -->
             <article class="news-archive-card">
-                <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Educação">
+                <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Educação">
                 <div class="news-archive-content">
                     <span class="news-category">Educação</span>
                     <h3>Escolas Municipais Receberão Tablets para Aulas de Tecnologia</h3>

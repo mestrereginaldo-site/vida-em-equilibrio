@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nós | Vida em Equilíbrio</title>
+    <meta name="description" content="Conheça a história e missão do Vida em Equilíbrio - seu portal de notícias e dicas para o dia a dia">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌱</text></svg>">
+    <style>
+        :root {
+            --primary: #2c5530;
+            --secondary: #4a7c59;
+            --accent: #f8b500;
+            --light: #f9f9f9;
+            --dark: #333;
+            --gray: #777;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        .search-bar {
+            display: flex;
+            max-width: 400px;
+            width: 100%;
+        }
+        
+        .search-bar input {
+            flex: 1;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+        }
+        
+        .search-bar button {
+            background: var(--accent);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+        
+        /* Menu Desktop */
+        .desktop-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+        
+        .desktop-nav a {
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        
+        .desktop-nav a:hover, .desktop-nav a.active {
+            background: rgba(255,255,255,0.1);
+        }
+        
+        /* Hero Section Sobre */
+        .about-hero {
+            background: 
+                linear-gradient(135deg, rgba(44, 85, 48, 0.85) 0%, rgba(74, 124, 89, 0.75) 100%), 
+                url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80') 
+                no-repeat center center/cover;
+            color: white;
+            padding: 120px 0;
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .hero-content p {
+            font-size: 1.3rem;
+            max-width: 600px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        /* Conteúdo Sobre */
+        .about-content {
+            background: white;
+            border-radius: 8px;
+            padding: 40px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+        
+        .about-section {
+            margin-bottom: 40px;
+        }
+        
+        .about-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .about-section h2 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        .about-section p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        /* Valores */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .value-card {
+            text-align: center;
+            padding: 30px 20px;
+            background: var(--light);
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .value-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        
+        .value-card h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        /* Equipe */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .team-member {
+            text-align: center;
+        }
+        
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 3px solid var(--accent);
+        }
+        
+        .team-member h3 {
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .team-role {
+            color: var(--gray);
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 40px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 36px;
+            height: 36px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 36px;
+            transition: background 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--accent);
+            color: var(--dark);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 992px) {
+            .values-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .search-bar {
+                max-width: 100%;
+            }
+            
+            .desktop-nav {
+                display: none;
+            }
+            
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-hero {
+                padding: 80px 0;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            .about-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <span>🌱</span> Vida em <span>Equilíbrio</span>
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Buscar...">
+                    <button>🔍</button>
+                </div>
+            </div>
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="noticias.html">Notícias Locais</a></li>
+                    <li><a href="receitas.html">Receitas</a></li>
+                    <li><a href="bem-estar.html">Bem-estar</a></li>
+                    <li><a href="economia.html">Economia Doméstica</a></li>
+                    <li><a href="sobre.html" class="active">Sobre</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="about-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Sobre Nós</h1>
+                <p>Conheça a história por trás do Vida em Equilíbrio</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="about-content">
+            <!-- Nossa História -->
+            <div class="about-section">
+                <h2>Nossa História</h2>
+                <p>O <strong>Vida em Equilíbrio</strong> nasceu em 2023 da necessidade de criar um espaço online que realmente fizesse diferença no dia a dia das pessoas. Percebemos que, em meio à correria do cotidiano, muitas pessoas buscavam informações práticas e relevantes sobre notícias locais, receitas acessíveis e dicas de bem-estar.</p>
+                <p>Começamos como um pequeno blog e hoje nos tornamos uma referência em conteúdo de qualidade para famílias que buscam equilibrar trabalho, saúde, finanças e qualidade de vida.</p>
+            </div>
+
+            <!-- Nossa Missão -->
+            <div class="about-section">
+                <h2>Nossa Missão</h2>
+                <p>Nossa missão é <strong>simplificar a vida das pessoas</strong> através de conteúdo prático, acessível e de qualidade. Acreditamos que pequenas mudanças no dia a dia podem transformar vidas e queremos ser o catalisador dessas transformações.</p>
+                <p>Queremos ser a primeira fonte que você consulta quando precisa de uma receita rápida, quer saber o que está acontecendo na sua cidade ou busca dicas para melhorar sua qualidade de vida.</p>
+            </div>
+
+            <!-- Valores -->
+            <div class="about-section">
+                <h2>Nossos Valores</h2>
+                <div class="values-grid">
+                    <div class="value-card">
+                        <div class="value-icon">💚</div>
+                        <h3>Autenticidade</h3>
+                        <p>Publicamos apenas conteúdo verificado e testado, sempre com transparência.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">🤝</div>
+                        <h3>Comunidade</h3>
+                        <p>Acreditamos no poder da comunidade e valorizamos cada interação.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">🌱</div>
+                        <h3>Sustentabilidade</h3>
+                        <p>Promovemos práticas sustentáveis e o consumo consciente.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Equipe -->
+            <div class="about-section">
+                <h2>Nossa Equipe</h2>
+                <p>Contamos com uma equipe diversificada de profissionais apaixonados por compartilhar conhecimento e fazer a diferença na vida das pessoas.</p>
+                
+                <div class="team-grid">
+                    <div class="team-member">
+                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Ana Silva">
+                        <h3>Ana Silva</h3>
+                        <div class="team-role">Editora-chefe</div>
+                        <p>Jornalista com 10 anos de experiência</p>
+                    </div>
+                    <div class="team-member">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Carlos Santos">
+                        <h3>Carlos Santos</h3>
+                        <div class="team-role">Chef de Cozinha</div>
+                        <p>Especialista em receitas práticas</p>
+                    </div>
+                    <div class="team-member">
+                        <img src="https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Marina Oliveira">
+                        <h3>Marina Oliveira</h3>
+                        <div class="team-role">Especialista em Bem-estar</div>
+                        <p>Educadora física e nutricionista</p>
+                    </div>
+                    <div class="team-member">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" alt="Roberto Lima">
+                        <h3>Roberto Lima</h3>
+                        <div class="team-role">Economista</div>
+                        <p>Especialista em finanças domésticas</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Espaço AdSense -->
+        <div class="ad-container" style="background: #f0f0f0; border: 1px dashed #ccc; padding: 30px; text-align: center; margin: 40px 0; border-radius: 8px;">
+            [ESPAÇO PARA ANÚNCIO ADSENSE - LARGO]
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Vida em Equilíbrio</h3>
+                    <p>Seu portal de notícias locais, receitas práticas e dicas para o dia a dia.</p>
+                    <div class="social-links">
+                        <a href="#">f</a>
+                        <a href="#">t</a>
+                        <a href="#">in</a>
+                        <a href="#">ig</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Links Rápidos</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="noticias.html">Notícias Locais</a></li>
+                        <li><a href="receitas.html">Receitas</a></li>
+                        <li><a href="bem-estar.html">Bem-estar</a></li>
+                        <li><a href="economia.html">Economia Doméstica</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Categorias</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Notícias Locais</a></li>
+                        <li><a href="#">Receitas Práticas</a></li>
+                        <li><a href="#">Bem-estar</a></li>
+                        <li><a href="#">Economia Doméstica</a></li>
+                        <li><a href="#">Dicas do Dia</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contato</h3>
+                    <ul class="footer-links">
+                        <li>contato@vidaemequilibrio.com</li>
+                        <li>(11) 9999-9999</li>
+                        <li>Rua Exemplo, 123 - Centro</li>
+                        <li>São Paulo, SP</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 Vida em Equilíbrio. Todos os direitos reservados. | 
+                <a href="politica-privacidade.html">Política de Privacidade</a> | 
+                <a href="termos-uso.html">Termos de Uso</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

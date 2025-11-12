@@ -132,6 +132,19 @@
             transition: 0.3s;
         }
         
+        /* Animação do Hamburger quando ativo */
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+        
         .mobile-menu {
             display: none;
             position: absolute;
@@ -477,6 +490,9 @@
             
             .hamburger {
                 display: flex;
+                position: absolute;
+                right: 15px;
+                top: 15px;
             }
             
             .news-grid {
@@ -522,7 +538,7 @@
             
             <!-- Menu Desktop -->
             <nav class="desktop-nav">
-    <ul>
+                <ul>
                     <li><a href="index.html">Início</a></li>
                     <li><a href="noticias.html">Notícias Locais</a></li>
                     <li><a href="receitas.html">Receitas</a></li>
@@ -530,23 +546,23 @@
                     <li><a href="economia.html">Economia Doméstica</a></li>
                     <li><a href="sobre.html">Sobre</a></li>
                     <li><a href="contato.html">Contato</a></li>
-    </ul>
-</nav>
+                </ul>
+            </nav>
             
             <!-- Menu Mobile -->
             <nav class="mobile-nav">
-    <div class="mobile-menu" id="mobileMenu">
-        <ul>
-            <li><a href="index.html">Início</a></li>
-            <li><a href="noticias.html">Notícias Locais</a></li>
-            <li><a href="receitas.html">Receitas</a></li>
-            <li><a href="bem-estar.html">Bem-estar</a></li>
-            <li><a href="economia.html">Economia Doméstica</a></li>
-            <li><a href="sobre.html">Sobre</a></li>
-            <li><a href="contato.html">Contato</a></li>
-        </ul>
-    </div>
-</nav>
+                <div class="mobile-menu" id="mobileMenu">
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="noticias.html">Notícias Locais</a></li>
+                        <li><a href="receitas.html">Receitas</a></li>
+                        <li><a href="bem-estar.html">Bem-estar</a></li>
+                        <li><a href="economia.html">Economia Doméstica</a></li>
+                        <li><a href="sobre.html">Sobre</a></li>
+                        <li><a href="contato.html">Contato</a></li>
+                    </ul>
+                </div>
+            </nav>
         </div>
     </header>
 
@@ -760,7 +776,7 @@
     </footer>
 
     <script>
-        // Menu Hamburger para Mobile
+        // Menu Hamburger para Mobile - CÓDIGO CORRIGIDO
         document.getElementById('hamburger').addEventListener('click', function() {
             const mobileMenu = document.getElementById('mobileMenu');
             mobileMenu.classList.toggle('active');

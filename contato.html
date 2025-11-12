@@ -179,30 +179,17 @@
             background: rgba(255,255,255,0.1);
         }
         
-        /* Hero Section Contato - COM BANNER IGUAL ÀS OUTRAS PÁGINAS */
+        /* Hero Section Contato - COM BANNER FUNCIONANDO */
         .contact-hero {
-            background: url('https://images.unsplash.com/photo-1551836026-d5c88ac5d691?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            background: 
+                linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                url('https://images.unsplash.com/photo-1551836026-d5c88ac5d691?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80') 
+                no-repeat center center/cover;
             color: white;
             padding: 120px 0;
             text-align: center;
             margin-bottom: 40px;
             position: relative;
-        }
-        
-        /* Adicionando overlay escuro para melhor contraste do texto */
-        .contact-hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.5);
-        }
-        
-        .hero-content {
-            position: relative;
-            z-index: 2;
         }
         
         .hero-content h1 {
@@ -565,7 +552,7 @@
         </div>
     </header>
 
-    <!-- Hero Section - COM BANNER IGUAL ÀS OUTRAS PÁGINAS -->
+    <!-- Hero Section - COM BANNER FUNCIONANDO -->
     <section class="contact-hero">
         <div class="container">
             <div class="hero-content">

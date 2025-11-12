@@ -123,6 +123,9 @@
             flex-direction: column;
             cursor: pointer;
             gap: 4px;
+            background: none;
+            border: none;
+            padding: 5px;
         }
         
         .hamburger span {
@@ -134,7 +137,7 @@
         
         /* Animação do Hamburger quando ativo */
         .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
+            transform: rotate(45deg) translate(6px, 6px);
         }
         
         .hamburger.active span:nth-child(2) {
@@ -142,7 +145,7 @@
         }
         
         .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -6px);
+            transform: rotate(-45deg) translate(6px, -6px);
         }
         
         .mobile-menu {
@@ -170,9 +173,10 @@
         
         .mobile-menu a {
             display: block;
-            padding: 10px;
+            padding: 12px;
             border-radius: 4px;
             transition: background 0.3s;
+            font-size: 1.1rem;
         }
         
         .mobile-menu a:hover {
@@ -482,10 +486,16 @@
             
             .search-bar {
                 max-width: 100%;
+                order: 3;
+                width: 100%;
             }
             
             .desktop-nav {
                 display: none;
+            }
+            
+            .mobile-nav {
+                display: block;
             }
             
             .hamburger {
@@ -529,11 +539,11 @@
                     <input type="text" placeholder="Buscar notícias, receitas...">
                     <button>🔍</button>
                 </div>
-                <div class="hamburger" id="hamburger">
+                <button class="hamburger" id="hamburger">
                     <span></span>
                     <span></span>
                     <span></span>
-                </div>
+                </button>
             </div>
             
             <!-- Menu Desktop -->
@@ -776,7 +786,7 @@
     </footer>
 
     <script>
-        // Menu Hamburger para Mobile - CÓDIGO CORRIGIDO
+        // Menu Hamburger para Mobile - CÓDIGO CORRIGIDO E FUNCIONAL
         document.getElementById('hamburger').addEventListener('click', function() {
             const mobileMenu = document.getElementById('mobileMenu');
             mobileMenu.classList.toggle('active');
@@ -791,6 +801,17 @@
                 document.getElementById('mobileMenu').classList.remove('active');
                 document.getElementById('hamburger').classList.remove('active');
             });
+        });
+        
+        // Fechar menu ao clicar fora dele
+        document.addEventListener('click', function(event) {
+            const hamburger = document.getElementById('hamburger');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            if (!hamburger.contains(event.target) && !mobileMenu.contains(event.target)) {
+                mobileMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+            }
         });
     </script>
 </body>
